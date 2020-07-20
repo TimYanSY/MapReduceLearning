@@ -8,7 +8,7 @@ class MRMinTempratureByLocation(MRJob):
         (location, _date, tempType, temprature, _temp1,
          _temp2, _temp3, _temp4) = line.split(',')
         if tempType == 'TMIN':
-            yield location, temprature/10.0
+            yield location, (float(temprature)/10.0) * 1.8 + 32
 
     def reducer(self, location, temprature):
         yield location, min(temprature)
